@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import { MovieForm } from './Components/MovieForm';
+import { MovieList } from './Components/MovieList';
+import { Search } from './Components/Search';
+export const movie = createContext({})
 function App() {
+  const [data, setData] = useState([])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <movie.Provider value={{ data, setData }}>
+        <div className='d-flex'>
+          <MovieForm />
+          <div>
+            <Search />
+            <MovieList />
+          </div>
+        </div>
+
+      </movie.Provider>
     </div>
   );
 }
