@@ -3,7 +3,7 @@ import { movie } from '../App'
 
 export const MovieForm = () => {
     const Movie: any = useContext(movie)
-    const nameRef = useRef<HTMLInputElement | null>(null)
+    const nameRef = useRef<HTMLInputElement>(null!)
     const rateRef = useRef<HTMLInputElement>(null)
     const durationRef = useRef<HTMLInputElement>(null)
     const [name, setName] = useState("")
@@ -24,7 +24,7 @@ export const MovieForm = () => {
         let regex = /^[0-9]?.?[0-9]hr$/g
         console.log(regex);
         console.log(duration.endsWith("hr"));
-        if (name === "" && null !== nameRef.current) {
+        if (nameRef.current.value === "" && null !== nameRef.current) {
             alert("Enter movie name....")
             nameRef.current.focus()
         }
