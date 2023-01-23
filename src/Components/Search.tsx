@@ -4,33 +4,36 @@ export const Search = () => {
     const Movie: any = useContext(movie)
     const result: any = useContext(SearchContext)
     const input: any = useContext(valueContext)
-    console.log("Data", Movie.data);
     const SearchHandler = (e: any) => {
+        // seraching movie via name
         input.setvalue(e.target.value)
-        console.log("box", input.value);
         if (input.value.length >= 2) {
             let arr = [];
             for (let i = 0; i < Movie.data.length; i++) {
-                if (Movie.data[i].name.startsWith(input.value)) {
-                    console.log("yuppp!");
-                    console.log(Movie.data[i]);
+                if (Movie.data[i].name.startsWith(e.target.value)) {
                     arr.push(Movie.data[i])
-                    result.setSearch([...arr])
+                    result.setSearch(arr)
+                }
+                else {
+                    result.setSearch([])
                 }
             }
         }
     }
     return (
-        <div className=' mb-3' style={{ margin: "16% 4%" }}>
-            <div className="input-group mb-3">
-                <input type="text"
-                    className="form-control"
-                    placeholder="Search Here ..."
-                    aria-label="Search Here ..."
-                    onChange={SearchHandler}
-                    aria-describedby="button-addon2"
-                />
+        <div className=''>
+            <div className='w-100 mb-3'>
+                <div className="input-group mb-3 mt-3">
+                    <input type="text"
+                        className="form-control"
+                        placeholder="Search Here ..."
+                        aria-label="Search Here ..."
+                        onChange={SearchHandler}
+                        aria-describedby="button-addon2"
+                    />
+                </div>
             </div>
         </div>
+
     )
 }

@@ -2,15 +2,16 @@ import React, { ChangeEvent, useContext, useRef, useState } from 'react'
 import { movie } from '../App'
 
 export const MovieForm = () => {
+    // using context here
     const Movie: any = useContext(movie)
     const nameRef = useRef<HTMLInputElement>(null!)
     const rateRef = useRef<HTMLInputElement>(null)
     const durationRef = useRef<HTMLInputElement>(null)
+    // State for taking value from user
     const [name, setName] = useState("")
     const [rate, setRate] = useState("")
     const [duration, setDuration] = useState("")
-    console.log(duration.endsWith("hr"));
-
+    // tasking value from user
     const NameHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     }
@@ -20,10 +21,11 @@ export const MovieForm = () => {
     const DurationHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setDuration(e.target.value)
     }
+    // Adding movie to movie list
     const ClickHandler = () => {
+        // VAlidation for movie duration
         let regex = /^[0-9]?.?[0-9]hr$/g
-        console.log(regex);
-        console.log(duration.endsWith("hr"));
+        // checking validation of input field
         if (nameRef.current.value === "" && null !== nameRef.current) {
             alert("Enter movie name....")
             nameRef.current.focus()
@@ -31,7 +33,6 @@ export const MovieForm = () => {
         else if (rate === "" && null !== rateRef.current) {
             alert("Enter rating...")
             rateRef.current.focus()
-            console.log(rateRef.current.value);
         }
         else if (duration === "" && null !== durationRef.current) {
             alert("Enter movie duration...")
@@ -41,16 +42,21 @@ export const MovieForm = () => {
             alert("Please write duration in hourse ex- 2.2hr")
             durationRef.current.focus()
         }
+        // sending the data into state
         else {
             var obj = {
                 name: name,
                 rate: rate,
-                duration: duration
+                duration: duration,
+                duration1: duration.slice(0, -2)
             }
             Movie.data.push(obj)
             Movie.setData([...Movie.data])
-            console.log(Movie.data);
             alert("Added successfully !")
+            // clearing input field
+            setName("")
+            setDuration("")
+            setRate("")
         }
     }
     return (
@@ -63,16 +69,19 @@ export const MovieForm = () => {
                     aria-describedby="basic-addon1"
                     ref={nameRef}
                     onChange={NameHandler}
+                    value={name}
 
                 />
                 <input type="number"
                     ref={rateRef}
+                    value={rate}
                     className="form-control mb-3"
                     placeholder="Rating between 0-100"
                     onChange={RateHandler}
                     aria-label="Username" aria-describedby="basic-addon1" />
                 <input type="text"
                     ref={durationRef}
+                    value={duration}
                     className="form-control mb-3"
                     placeholder="Duration"
                     aria-label="Username"

@@ -1,16 +1,16 @@
 .Container {
-  margin: 5%;
-  width: 40%;
+  margin: 4% 0 0 14%;
   padding: 3%;
   box-shadow: rgba(0, 1, 1, 0.2) 0px 8px 24px;
 }
-.App {
-  /* display: flex; */
+
+.Container2 {
+  box-shadow: rgba(0, 1, 1, 0.2) 0px 8px 24px;
+  width: 30%;
+  padding: 0 3%;
+  margin-top: 2%;
 }
 
-.Rating {
-
-}
 .Movielist {
   width: 100%;
   box-shadow: rgba(0, 1, 1, 0.2) 0px 8px 24px;

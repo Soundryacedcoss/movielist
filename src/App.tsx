@@ -1,5 +1,4 @@
 import React, { createContext, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { MovieForm } from './Components/MovieForm';
 import { MovieList } from './Components/MovieList';
@@ -15,10 +14,12 @@ function App() {
     <div className="App">
       <movie.Provider value={{ data, setData }}>
         <SearchContext.Provider value={{ search, setSearch }}>
-          <valueContext.Provider value={{value, setvalue}}>
-            <div className='d-flex'>
-              <MovieForm />
-              <div>
+          <valueContext.Provider value={{ value, setvalue }}>
+            <div style={{ display: "flex", columnGap: "5%" }}>
+              <div className='w-50'>
+                <MovieForm />
+              </div>
+              <div className='Container2'>
                 <Search />
                 <MovieList />
               </div>
