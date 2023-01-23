@@ -7,7 +7,7 @@ export const Search = () => {
     const SearchHandler = (e: any) => {
         // seraching movie via name
         input.setvalue(e.target.value)
-        if (input.value.length >= 2) {
+        if (e.target.value.length >= 1) {
             let arr = [];
             for (let i = 0; i < Movie.data.length; i++) {
                 if (Movie.data[i].name.startsWith(e.target.value)) {
@@ -15,7 +15,8 @@ export const Search = () => {
                     result.setSearch(arr)
                 }
                 else {
-                    result.setSearch([])
+                    arr.push()
+                    result.setSearch(arr)
                 }
             }
         }
