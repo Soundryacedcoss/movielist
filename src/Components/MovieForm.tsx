@@ -42,7 +42,7 @@ export const MovieForm = () => {
             durationRef.current.focus()
         }
         else if ((regex1.test(duration) === false && regex2.test(duration) === false) && null !== durationRef.current) {
-            alert("Please write duration in hourse ex- 2.2hr")
+            alert("Please write duration in hourse ex- 2h or 120m")
             durationRef.current.focus()
         }
         // sending the data into state
