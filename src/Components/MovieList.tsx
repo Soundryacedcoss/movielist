@@ -14,7 +14,7 @@ export const MovieList = () => {
   return (
     <div className='card mb-3 w-100'>
       {
-        result.search.length >= 0 && input.value.length >= 3 ?
+        result.search.length >= 0 && input.value.length >= 2 ?
           <div>
             {result.search.map((val: any) =>
               <div className='card'>

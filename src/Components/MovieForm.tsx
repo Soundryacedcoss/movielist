@@ -10,7 +10,7 @@ export const MovieForm = () => {
     // State for taking value from user
     const [name, setName] = useState("")
     const [rate, setRate] = useState("")
-    const [duration, setDuration] = useState("")
+    const [duration, setDuration] = useState<number | any>("")
     // tasking value from user
     const NameHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -24,7 +24,10 @@ export const MovieForm = () => {
     // Adding movie to movie list
     const ClickHandler = () => {
         // VAlidation for movie duration
-        let regex = /^[0-9]?.?[0-9]hr$/g
+        let regex1 = /^[0-9]?.?[0-9]h$/g
+        let regex2 = /^[0-9]?.?[0-9]m$/g
+
+
         // checking validation of input field
         if (nameRef.current.value === "" && null !== nameRef.current) {
             alert("Enter movie name....")
@@ -38,17 +41,28 @@ export const MovieForm = () => {
             alert("Enter movie duration...")
             durationRef.current.focus()
         }
-        else if (!regex.test(duration) && null !== durationRef.current) {
+        else if ((regex1.test(duration) === false && regex2.test(duration) === false) && null !== durationRef.current) {
             alert("Please write duration in hourse ex- 2.2hr")
             durationRef.current.focus()
         }
         // sending the data into state
         else {
-            var obj = {
-                name: name,
-                rate: rate,
-                duration: duration,
-                duration1: duration.slice(0, -2)
+            let obj;
+            if (duration.match("m")) {
+                obj = {
+                    name: name,
+                    rate: rate,
+                    duration: ((parseInt(duration) / 60) + "h"),
+                    duration1: duration.slice(0, -2)
+                }
+            }
+            else if (duration.match("h")) {
+                obj = {
+                    name: name,
+                    rate: rate,
+                    duration: duration,
+                    duration1: duration.slice(0, -2)
+                }
             }
             Movie.data.push(obj)
             Movie.setData([...Movie.data])
