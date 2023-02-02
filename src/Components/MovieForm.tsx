@@ -53,7 +53,7 @@ export const MovieForm = () => {
                     name: name,
                     rate: rate,
                     duration: ((parseInt(duration) / 60) + "h"),
-                    duration1: duration.slice(0, -2)
+                    duration1: parseInt(duration.slice(0, -1))
                 }
             }
             else if (duration.match("h")) {
@@ -61,9 +61,10 @@ export const MovieForm = () => {
                     name: name,
                     rate: rate,
                     duration: duration,
-                    duration1: duration.slice(0, -2)
+                    duration1: parseInt(duration.slice(0, -1))
                 }
             }
+
             Movie.data.push(obj)
             Movie.setData([...Movie.data])
             alert("Added successfully !")
@@ -71,6 +72,8 @@ export const MovieForm = () => {
             setName("")
             setDuration("")
             setRate("")
+            console.log(Movie.data);
+
         }
     }
     return (
